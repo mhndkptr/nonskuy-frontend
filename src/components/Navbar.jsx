@@ -1,7 +1,28 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <nav className="">
+      <nav className={`${isScrolled ? "bg-blue-950/60 backdrop-blur-md" : "bg-transparent"} transition-all sticky z-50 top-0 left-0 right-0`}>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-6">
           <div className="flex flex-row gap-20">
             <a href="/" className="flex items-center">
