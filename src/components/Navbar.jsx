@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`${isScrolled ? "bg-blue-950/60 backdrop-blur-md" : "bg-transparent"} transition-all sticky z-50 top-0 left-0 right-0`}>
+      <nav className={`${isScrolled ? "bg-blue-950/60 backdrop-blur-md" : "bg-transparent"} transition-all fixed z-50 top-0 left-0 right-0`}>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-6">
           <div className="flex flex-row gap-20">
             <a href="/" className="flex items-center">
