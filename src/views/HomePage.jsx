@@ -30,7 +30,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-blue-950 h-[1000px] py-20 px-4">
+        <section className="bg-blue-950 h-[1000px] py-32 px-4">
           <h1 className="font-extrabold text-3xl text-center text-white">Trending Movies</h1>
         </section>
       </div>
