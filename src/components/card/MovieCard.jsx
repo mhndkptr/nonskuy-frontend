@@ -15,8 +15,8 @@ export default function MovieCard({ data }) {
       >
         <img className="w-full h-auto object-cover" src={data.poster} alt={data.title} />
 
-        <div className="absolute bottom-0 right-0 left-0 p-2 bg-gradient-to-t from-black to-transparent pt-10">
-          <h2 className="font-bold text-sm text-white">{data.title}</h2>
+        <div className="absolute bottom-0 right-0 left-0 p-3 bg-gradient-to-t from-black to-transparent pt-10">
+          <h2 className="font-bold text-base text-white">{data.title}</h2>
           {data.releaseDate && (
             <div className="flex flex-row text-sm gap-2 justify-start items-center mt-1">
               <FaCalendarAlt className="text-gray-300" />

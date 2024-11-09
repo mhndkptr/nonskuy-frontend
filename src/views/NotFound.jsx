@@ -16,7 +16,7 @@ export default function NotFound() {
               onClick={() => {
                 navigate("/");
               }}
-              className="p-2 ml-1 bg-[#fac54e] rounded-md text-gray-600 font-bold md:text-base sm:text-sm text-xs hover:bg-[#d6a940] hover:text-white transition"
+              className="p-2 ml-1 bg-[#fac54e] rounded-md text-gray-800 font-bold md:text-base sm:text-sm text-xs hover:bg-[#d6a940] hover:text-gray-700 transition"
             >
               {" "}
               Home page

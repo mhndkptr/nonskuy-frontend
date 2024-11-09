@@ -21,7 +21,7 @@ export default function HomeTrendingSection({ trendingMovies }) {
           onClick={() => {
             navigate("/movie/trending");
           }}
-          className="text-gray-800 px-5 py-2 bg-[#fac54e] hover:bg-[#d6a940] hover:text-white transition font-medium rounded-lg"
+          className="text-gray-800 px-5 py-2 bg-[#fac54e] hover:bg-[#d6a940] hover:text-gray-700 transition font-medium rounded-lg"
         >
           See More
         </button>
