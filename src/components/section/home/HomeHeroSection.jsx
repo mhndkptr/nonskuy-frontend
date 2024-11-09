@@ -22,15 +22,18 @@ export default function HomeHeroSection({ highlightMovie }) {
           <div className="max-w-screen-xl mx-auto px-4 -translate-y-1/2 relative top-1/2">
             <div className="max-w-xl flex flex-col items-start gap-3 justify-center">
               <h1 className="text-white font-extrabold text-5xl">{highlightMovie.title}</h1>
-              <div>
-                <div className="flex flex-row gap-2 justify-start items-center">
-                  <FaCalendarAlt className="text-gray-300" />
-                  <h4 className="text-gray-200">
-                    <span className="text-gray-300">Year: </span>
-                    {highlightMovie.releaseDate.split("-")[0]}
-                  </h4>
+              {highlightMovie.releaseDate && (
+                <div>
+                  <div className="flex flex-row gap-2 justify-start items-center">
+                    <FaCalendarAlt className="text-gray-300" />
+                    <h4 className="text-gray-200">
+                      <span className="text-gray-300">Year: </span>
+                      {highlightMovie.releaseDate.split("-")[0]}
+                    </h4>
+                  </div>
                 </div>
-              </div>
+              )}
+
               <p className="text-gray-300">{highlightMovie.overview}</p>
               <button
                 onClick={() => {

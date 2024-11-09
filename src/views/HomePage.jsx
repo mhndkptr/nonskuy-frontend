@@ -41,10 +41,15 @@ export default function HomePage() {
 
   return (
     <>
-      {highlightMovie && (
-        <div className="w-full">
+      {highlightMovie ? (
+        <div className="w-full min-h-screen">
           <HomeHeroSection highlightMovie={highlightMovie} />
           <HomeTrendingSection trendingMovies={trendingMovies} />
+        </div>
+      ) : (
+        <div className="min-h-screen bg-blue-950 flex justify-center items-center">
+          <div className="w-8 h-8 bg-[#fac54e] rounded-full animate-bounce"></div>
+          <p className="ml-3 text-white text-xl">Loading...</p>
         </div>
       )}
     </>
