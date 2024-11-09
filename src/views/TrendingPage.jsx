@@ -238,7 +238,7 @@ export default function TrendingPage() {
     <>
       <div className="min-h-screen bg-blue-950">
         <section className="pb-28 lg:pt-28 pt-24 max-w-screen-xl px-4 mx-auto">
-          <h1 className="font-extrabold text-2xl text-left text-white">Trending Movies</h1>
+          <h1 className="font-medium text-2xl text-left text-white">Trending Movies</h1>
 
           <div className="w-full mt-8">
             <div className="grid lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 grid-cols-2 gap-4 place-items-baseline">

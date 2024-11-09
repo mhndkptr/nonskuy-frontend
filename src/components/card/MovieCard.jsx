@@ -17,10 +17,13 @@ export default function MovieCard({ data }) {
 
         <div className="absolute bottom-0 right-0 left-0 p-2 bg-gradient-to-t from-black to-transparent pt-10">
           <h2 className="font-bold text-sm text-white">{data.title}</h2>
-          <div className="flex flex-row text-sm gap-2 justify-start items-center mt-1">
-            <FaCalendarAlt className="text-gray-300" />
-            <h4 className="text-gray-300 font-bold">{data.releaseDate.split("-")[0]}</h4>
-          </div>
+          {data.releaseDate && (
+            <div className="flex flex-row text-sm gap-2 justify-start items-center mt-1">
+              <FaCalendarAlt className="text-gray-300" />
+
+              <h4 className="text-gray-300 font-bold">{data.releaseDate.split("-")[0]}</h4>
+            </div>
+          )}
         </div>
 
         <button
