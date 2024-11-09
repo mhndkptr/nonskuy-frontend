@@ -77,7 +77,7 @@ export default function DetailMoviePage() {
                     </div>
                     <div className="flex flex-row gap-1 text-white sm:text-base text-sm justify-center items-center">
                       <FaStar />
-                      <h4>{data.vote ? data.vote : "-"}</h4>
+                      <h4>{data.vote ? data.vote.toFixed(1) : "-"}</h4>
                     </div>
                   </div>
 
