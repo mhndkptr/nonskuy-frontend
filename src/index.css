@@ -6,6 +6,6 @@
 
 @layer base {
   html {
-    @apply font-rubik;
+    @apply font-rubik scroll-smooth;
   }
 }

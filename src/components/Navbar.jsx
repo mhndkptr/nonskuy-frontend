@@ -40,17 +40,17 @@ export default function Navbar() {
               </div>
               <ul className="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-14 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                 <li>
-                  <a href="#" className="block py-2 px-3 text-white rounded md:bg-transparent md:p-0 font-medium" aria-current="page">
+                  <a href="/" className="block py-2 px-3 text-white rounded md:bg-transparent md:p-0 font-medium" aria-current="page">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="block py-2 px-3 text-gray-300 rounded md:hover:bg-transparent transition md:hover:text-[#fac54e] md:p-0">
+                  <a href="/movie" className="block py-2 px-3 text-gray-300 rounded md:hover:bg-transparent transition md:hover:text-[#fac54e] md:p-0">
                     Movie
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="block py-2 px-3 text-gray-300 rounded md:hover:bg-transparent transition md:hover:text-[#fac54e] md:p-0 ">
+                  <a href="/movie/trending" className="block py-2 px-3 text-gray-300 rounded md:hover:bg-transparent transition md:hover:text-[#fac54e] md:p-0 ">
                     Trending
                   </a>
                 </li>
