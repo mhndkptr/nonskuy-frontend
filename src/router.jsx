@@ -4,6 +4,7 @@ import MainLayout from "./layout/MainLayout";
 import HomePage from "./views/HomePage";
 import TrendingPage from "./views/TrendingPage";
 import DetailMoviePage from "./views/DetailMoviePage";
+import SearchMoviePage from "./views/SearchMoviePage";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/movie/:id",
         element: <DetailMoviePage />,
+      },
+      {
+        path: "/movie/search",
+        element: <SearchMoviePage />,
       },
     ],
   },
