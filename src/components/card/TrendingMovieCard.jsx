@@ -13,7 +13,7 @@ export default function TrendingMovieCard({ data }) {
         }}
         key={data.id}
       >
-        <img className="w-full h-auto object-cover" src={data.poster} alt={data.title} />
+        <img className="w-full h-auto object-cover" src={data.posterUri} alt={data.title} />
 
         <div className="absolute bottom-0 right-0 left-0 p-4 bg-gradient-to-t from-black to-transparent pt-10">
           <h2 className="font-bold text-lg text-white">{data.title}</h2>

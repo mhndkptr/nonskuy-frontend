@@ -246,8 +246,8 @@ export default function TrendingPage() {
       .get("movie/trending")
       .then((response) => {
         if (response.data?.statusCode === 200 || response.data?.statusCode === 201) {
-          if (response.data.data.trendingMovies.length > 0) {
-            setTrendingMovies(response.data.data.trendingMovies);
+          if (response.data.data.movies.length > 0) {
+            setTrendingMovies(response.data.data.movies);
           } else {
             setTrendingMovies([]);
           }

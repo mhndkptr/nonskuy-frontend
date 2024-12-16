@@ -11,7 +11,7 @@ export default function HomeHeroSection({ highlightMovie }) {
         <div className="h-full">
           <img
             className="h-full w-screen absolute top-0 object-cover object-center -z-50"
-            src={highlightMovie.backdrop}
+            src={highlightMovie.backdropUri}
             alt={highlightMovie.title}
             onError={(error) => {
               error.target.src = defaultErrorBackdrop;

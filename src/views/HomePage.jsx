@@ -23,9 +23,9 @@ export default function HomePage() {
       .get("movie/trending")
       .then((response) => {
         if (response.data?.statusCode === 200 || response.data?.statusCode === 201) {
-          if (response.data.data.trendingMovies.length > 0) {
-            setHighlightMovie(response.data.data.trendingMovies[response.data.data.trendingMovies.length - 1]);
-            setTrendingMovies(response.data.data.trendingMovies.slice(1, 4));
+          if (response.data.data.movies.length > 0) {
+            setHighlightMovie(response.data.data.movies[0]);
+            setTrendingMovies(response.data.data.movies.slice(1, 4));
           } else {
             setHighlightMovie(tempHighlightMovie);
           }
