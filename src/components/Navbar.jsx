@@ -36,7 +36,7 @@ export default function Navbar() {
         <div className={`max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-6 relative ${isMenuOpen ? "" : "px-4"}`}>
           <div className="flex flex-row gap-20 ">
             <a href="/" className={`flex items-center  ${isMenuOpen && "ml-4"}`}>
-              <span className="self-center text-2xl whitespace-nowrap text-[#fac54e] font-bold">CWATCH</span>
+              <span className="self-center text-2xl whitespace-nowrap text-[#fac54e] font-bold">NONSKUY</span>
             </a>
 
             <div className={`items-center justify-between w-full md:flex md:w-auto ${isMenuOpen ? "block absolute bottom-0 translate-y-2/3 px-4 top-0" : "hidden"} md:block`} id="navbar-search">
@@ -76,6 +76,14 @@ export default function Navbar() {
                     className={`block py-2 px-3 rounded md:p-0 ${location.pathname === "/movie/trending" ? "text-white md:bg-transparent font-medium " : "text-gray-300 md:hover:bg-transparent transition md:hover:text-[#fac54e]"} `}
                   >
                     Trending
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/movie/search-analytics"
+                    className={`block py-2 px-3 rounded md:p-0 ${location.pathname === "/movie/search-analytics" ? "text-white md:bg-transparent font-medium " : "text-gray-300 md:hover:bg-transparent transition md:hover:text-[#fac54e]"} `}
+                  >
+                    Search Analytics
                   </a>
                 </li>
               </ul>

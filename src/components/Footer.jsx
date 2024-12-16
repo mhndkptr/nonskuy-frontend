@@ -6,7 +6,7 @@ export default function Footer() {
           <span className="block text-sm text-gray-600 sm:text-center">
             © 2024{" "}
             <a href="/" className="hover:underline">
-              CWATCH
+              NONSKUY
             </a>
             . All Rights Reserved.
           </span>

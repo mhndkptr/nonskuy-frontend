@@ -8,10 +8,11 @@ const request = axios.create({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "*",
     "Access-Control-Allow-Methods": "*",
-    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Credentials": "false",
   },
 });
 
 export default {
   get: (url, params = null, headers = {}) => request({ method: "get", url, params, headers }),
+  post: (url, data, headers = {}) => request({ method: "post", url, data, headers }),
 };

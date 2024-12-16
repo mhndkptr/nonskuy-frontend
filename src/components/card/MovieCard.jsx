@@ -7,13 +7,13 @@ export default function MovieCard({ data }) {
   return (
     <>
       <div
-        className="w-full bg-[#fac54e] rounded overflow-hidden shadow-lg cursor-pointer relative"
+        className="w-full h-full bg-[#fac54e] rounded overflow-hidden shadow-lg cursor-pointer relative"
         onClick={() => {
           console.log("tes");
         }}
         key={data.id}
       >
-        <img className="w-full h-auto object-cover" src={data.poster} alt={data.title} />
+        <img className="w-full h-full object-cover object-center" src={data.posterUri} alt={data.title} />
 
         <div className="absolute bottom-0 right-0 left-0 p-3 bg-gradient-to-t from-black to-transparent pt-10">
           <h2 className="font-bold text-base text-white">{data.title}</h2>
