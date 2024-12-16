@@ -10,35 +10,57 @@ import request from "../utils/request";
 export default function DetailMoviePage() {
   const params = useParams();
   const [data, setData] = useState(null);
+  const [relatedMovies, setRelatedMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const id = params.id;
+
+  const fetchMovieData = async (id) => {
+    try {
+      const response = await request.get(`movie/${id}`);
+      if (response.data?.statusCode === 200 || response.data?.statusCode === 201) {
+        if (response.data.data.movie) {
+          setData(response.data.data.movie);
+        } else {
+          setData({});
+        }
+      } else {
+        setData({});
+      }
+    } catch (error) {
+      console.error(error);
+      setData({});
+    }
+  };
+
+  const fetchRelatedData = async (id) => {
+    try {
+      const response = await request.get(`movie/${id}/related`);
+      if (response.data?.statusCode === 200 || response.data?.statusCode === 201) {
+        if (response.data.data.movies) {
+          setRelatedMovies(response.data.data.movies);
+        } else {
+          setRelatedMovies([]);
+        }
+      } else {
+        setRelatedMovies([]);
+      }
+    } catch (error) {
+      console.error(error);
+      setRelatedMovies([]);
+    }
+  };
 
   useEffect(() => {
     setIsLoading(true);
 
-    request
-      .get(`movie/show/${id}`)
-      .then((response) => {
-        if (response.data?.statusCode === 200 || response.data?.statusCode === 201) {
-          if (response.data.data.movie) {
-            setData(response.data.data.movie);
-          } else {
-            setData({});
-          }
-        } else {
-          setData({});
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        setData({});
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    Promise.allSettled([fetchMovieData(id), fetchRelatedData(id)]).finally(() => {
+      setIsLoading(false);
+    });
   }, [id]);
 
   if (!id) return <NotFound />;
+
+  console.log(data);
 
   return (
     <>
@@ -54,20 +76,22 @@ export default function DetailMoviePage() {
           <div className="pb-28 lg:pt-28 pt-24 max-w-screen-xl px-4 mx-auto">
             {!data && <h1 className="font-medium text-2xl text-left text-white">Data not found.</h1>}
             <section className="flex md:flex-row flex-col gap-10">
-              <img className="max-w-72 h-full rounded-lg" src={data.poster} alt={data.title} />
+              <img className="max-w-72 h-full rounded-lg" src={data.posterUri} alt={data.title} />
 
               <div className="flex flex-col w-full justify-center">
                 <h1 className="font-bold md:text-3xl text-2xl text-left text-white mt-1">{data.title}</h1>
 
                 <div className="mt-10">
                   <div className="flex flex-row flex-wrap gap-3">
-                    {data.genres.map((genre, index) => {
-                      return (
-                        <div key={index} className="bg-[#fac54e] py-1 px-4 rounded-xl w-max">
-                          <h3 className="text-gray-800 md:text-base text-sm font-normal">{genre}</h3>
-                        </div>
-                      );
-                    })}
+                    {data &&
+                      data.genre &&
+                      data.genre.map((item, index) => {
+                        return (
+                          <div key={index} className="bg-[#fac54e] py-1 px-4 rounded-xl w-max">
+                            <h3 className="text-gray-800 md:text-base text-sm font-normal">{item}</h3>
+                          </div>
+                        );
+                      })}
                   </div>
 
                   <div className="flex flex-row gap-3 mt-3">
@@ -86,10 +110,10 @@ export default function DetailMoviePage() {
                   <div className="mt-10">
                     <Link
                       target="_blank"
-                      to={data.trailerLink ? data.trailerLink : "https://www.youtube.com/"}
+                      to={data.homepageUri ? data.homepageUri : "https://www.youtube.com/"}
                       className="text-gray-800 px-5 py-3 bg-[#fac54e] hover:bg-[#d6a940] hover:text-gray-700 transition font-medium rounded-lg md:text-base text-sm"
                     >
-                      Watch Trailer
+                      Homepage
                     </Link>
                   </div>
                 </div>
@@ -100,9 +124,10 @@ export default function DetailMoviePage() {
               <h1 className="font-medium text-2xl text-left text-white">Related Movies</h1>
 
               <div className="grid lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 grid-cols-2 gap-4 place-items-baseline mt-5 ">
-                {data.relatedMovies.map((movie) => {
-                  return <MovieCard key={movie.id} data={movie} />;
-                })}
+                {relatedMovies &&
+                  relatedMovies.map((movie) => {
+                    return <MovieCard key={movie.id} data={movie} />;
+                  })}
               </div>
             </section>
           </div>
