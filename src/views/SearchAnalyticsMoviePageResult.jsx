@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import request from "../utils/request";
 import Collapse from "../components/Collapse";
 import AnalyticsChart from "../components/AnalyticsChart";
+import AnalyticsLineChart from "../components/AnalyticsLineChart";
 
 export default function SearchAnalyticsMoviePageResult() {
   const [resultMovies, setResultMovies] = useState(null);
   const [analytics, setAnalytics] = useState(null);
+  const [fullAnalytics, setFullAnalytics] = useState(null);
   const [queryParameters] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   //   const query = queryParameters.get("query");
@@ -17,34 +19,57 @@ export default function SearchAnalyticsMoviePageResult() {
   const [query, setQuery] = useState(queryParameters.get("query"));
   const [inputSize, setInputSize] = useState(queryParameters.get("input_size"));
 
+  const fetchAnalyticsData = async (query, inputSize) => {
+    try {
+      const response = await request.post(`movie/analytics`, {
+        query: query,
+        totalRecordUse: parseInt(inputSize),
+      });
+      if (response.data?.statusCode === 200 || response.data?.statusCode === 201) {
+        if (response.data.data.analytics) {
+          setFullAnalytics(response.data.data.analytics);
+        } else {
+          setFullAnalytics({});
+        }
+      } else {
+        setFullAnalytics({});
+      }
+    } catch (error) {
+      console.error(error);
+      setFullAnalytics({});
+    }
+  };
+
+  const fetchSearchData = async (query, inputSize) => {
+    try {
+      const response = await request.post(`movie/search-analytics`, {
+        query: query,
+        totalRecordUse: parseInt(inputSize),
+      });
+      if (response.data?.statusCode === 200 || response.data?.statusCode === 201) {
+        if (response.data.data.movies.length > 0) {
+          setResultMovies(response.data.data.movies);
+        } else {
+          setResultMovies([]);
+        }
+        setAnalytics(response.data.data.analytics);
+      } else {
+        setResultMovies([]);
+      }
+    } catch (error) {
+      console.error(error);
+      setResultMovies([]);
+    }
+  };
+
   useEffect(() => {
     if (query && query.length > 0 && inputSize && inputSize > 0) {
       setIsLoading(true);
-      request
-        .post(`movie/search-analytics`, {
-          query: query,
-          totalRecordUse: parseInt(inputSize),
-        })
-        .then((response) => {
-          if (response.data?.statusCode === 200 || response.data?.statusCode === 201) {
-            if (response.data.data.movies.length > 0) {
-              setResultMovies(response.data.data.movies);
-            } else {
-              setResultMovies([]);
-            }
-            setAnalytics(response.data.data.analytics);
-          } else {
-            setResultMovies([]);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          setResultMovies([]);
-        })
-        .finally(() => {
-          setIsLoading(false);
-          setFinishQuery(query);
-        });
+
+      Promise.allSettled([fetchSearchData(query, inputSize), fetchAnalyticsData(query, inputSize)]).finally(() => {
+        setIsLoading(false);
+        setFinishQuery(query);
+      });
     }
   }, []);
 
@@ -164,6 +189,10 @@ export default function SearchAnalyticsMoviePageResult() {
                     );
                   })}
                 </div>
+              </div>
+
+              <div className="w-full mx-auto mt-8">
+                <AnalyticsLineChart analytics={fullAnalytics} />
               </div>
             </Collapse>
 
