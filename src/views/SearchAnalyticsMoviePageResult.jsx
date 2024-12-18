@@ -21,7 +21,7 @@ export default function SearchAnalyticsMoviePageResult() {
     if (query && query.length > 0 && inputSize && inputSize > 0) {
       setIsLoading(true);
       request
-        .post(`movie/search`, {
+        .post(`movie/search-analytics`, {
           query: query,
           totalRecordUse: parseInt(inputSize),
         })
