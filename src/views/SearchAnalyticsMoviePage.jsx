@@ -30,18 +30,27 @@ export default function SearchAnalyticsMoviePage() {
               </button>
             </div>
 
-            <div className="flex flex-col mt-3">
-              <label htmlFor="input-size" className="mb-2 font-semibold md:text-xl text-lg text-left text-white">
-                Input Size
-              </label>
-              <input
-                type="number"
-                id="input-size"
-                name="input_size"
-                className="block max-w-44 px-4 py-3 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Input size limit..."
-                required
-              />
+            <div className="flex w-full gap-3">
+              <div className="flex flex-col mt-3 flex-grow w-full">
+                <label htmlFor="input-size" className="mb-2 font-semibold md:text-xl text-lg text-left text-white">
+                  Input Size
+                </label>
+                <input
+                  type="number"
+                  id="input-size"
+                  name="input_size"
+                  className="block w-full px-4 py-3 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Input size limit..."
+                  required
+                />
+              </div>
+              <div className="flex flex-col mt-3 flex-grow w-full">
+                <h1 className="mb-2 font-semibold md:text-xl text-lg text-left text-white">Select Type</h1>
+                <select id="type-select" name="type" className="block w-full px-4 py-3 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
+                  <option value="single">Single</option>
+                  <option value="many">Many</option>
+                </select>
+              </div>
             </div>
           </form>
         </div>

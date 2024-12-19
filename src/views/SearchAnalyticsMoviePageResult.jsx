@@ -18,10 +18,11 @@ export default function SearchAnalyticsMoviePageResult() {
   const [finishQuery, setFinishQuery] = useState("");
   const [query, setQuery] = useState(queryParameters.get("query"));
   const [inputSize, setInputSize] = useState(queryParameters.get("input_size"));
+  const [type, setType] = useState(queryParameters.get("type"));
 
   const fetchAnalyticsData = async (query, inputSize) => {
     try {
-      const response = await request.post(`movie/analytics`, {
+      const response = await request.post(`movie/analytics/${type}`, {
         query: query,
         totalRecordUse: parseInt(inputSize),
       });
@@ -42,7 +43,7 @@ export default function SearchAnalyticsMoviePageResult() {
 
   const fetchSearchData = async (query, inputSize) => {
     try {
-      const response = await request.post(`movie/search-analytics`, {
+      const response = await request.post(`movie/search-analytics/${type}`, {
         query: query,
         totalRecordUse: parseInt(inputSize),
       });
@@ -87,9 +88,9 @@ export default function SearchAnalyticsMoviePageResult() {
         ) : (
           <section className="pb-28 lg:pt-28 pt-24 max-w-screen-xl px-4 mx-auto">
             <div className="flex items-center md:gap-5 gap-2">
-              <form className="w-full flex md:flex-row flex-col md:items-center md:gap-5 gap-2" method="GET" action="/movie/search-analytics/result">
-                <div className="flex md:items-center items-start gap-2 md:gap-5 md:flex-row flex-col">
-                  <h1 className="font-bold md:text-2xl text-xl text-left text-white">SEARCH</h1>
+              <form className="w-full flex md:flex-row flex-col md:items-center md:gap-8 gap-2" method="GET" action="/movie/search-analytics/result">
+                <div className="flex items-start gap-2 md:gap-5 flex-col flex-wrap">
+                  <h1 className="font-bold md:text-2xl text-xl text-start text-white">SEARCH</h1>
                   <div className="lg:w-[600px] md:w-[500px] sm:w-[400px]">
                     <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">
                       Search
@@ -119,8 +120,9 @@ export default function SearchAnalyticsMoviePageResult() {
                     </div>
                   </div>
                 </div>
-                <div className="flex md:items-center items-start gap-2 md:gap-5 md:flex-row flex-col">
-                  <h1 className="font-bold md:text-xl text-lg text-left text-white">Input Size</h1>
+
+                <div className="flex items-start gap-2 md:gap-5 flex-col">
+                  <h1 className="font-bold md:text-xl text-lg text-start text-white">Input Size</h1>
                   <div className="flex flex-col items-center">
                     <input
                       type="number"
@@ -132,6 +134,22 @@ export default function SearchAnalyticsMoviePageResult() {
                       value={inputSize}
                       onChange={(e) => setInputSize(e.target.value)}
                     />
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 md:gap-5 flex-col">
+                  <h1 className="font-bold md:text-xl text-lg text-start text-white">Select Type</h1>
+                  <div className="flex flex-col items-center">
+                    <select
+                      id="type-select"
+                      name="type"
+                      className="block max-w-44 px-4 py-3 text-sm text-gray-900 border border-gray-300 rounded-3xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                      value={type}
+                      onChange={(e) => setType(e.target.value)}
+                    >
+                      <option value="single">Single</option>
+                      <option value="many">Many</option>
+                    </select>
                   </div>
                 </div>
               </form>
