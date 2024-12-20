@@ -10,7 +10,7 @@ const AnalyticsLineChart = ({ analytics }) => {
   const totalRecordUse = analytics.option.totalRecordUse;
 
   // Create labels based on totalRecordUse and totalExecutionTimeData
-  const labels = Array.from({ length: totalExecutionTimeData }, (_, i) => (i + 1) * 10).filter((label) => label <= totalRecordUse);
+  const labels = Array.from({ length: totalExecutionTimeData }, (_, i) => (i + 1) * analytics.option.interval).filter((label) => label <= totalRecordUse);
   if (totalRecordUse % analytics.option.interval !== 0) {
     labels.push(totalRecordUse);
   }
